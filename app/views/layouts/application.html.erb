@@ -4,25 +4,25 @@
     <title>Kanban</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%# ==========ここから追加する========== %>
     <% if flash[:notice] %>
-        <!-- ここにclassを追加する -->
-        <div class="alert alert-info"><%= flash[:notice] %></div>
-      <% end %>
-      <% if flash[:alert] %>
-        <!-- ここにclassを追加する -->
-        <div class="alert alert-danger"><%= flash[:alert] %></div>
-      <% end %>
-  <%# ==========ここまで追加する========== %>
-  <% if user_signed_in? %>
-    <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <% end %>
+      <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
+
+    <%# ログアウトリンクは_header.html.erbに書いていくので削除する %>
+    <%# ==========ここから編集する========== %>
+    <% if user_signed_in? %>
+      <%= render partial: "layouts/header" %>
+    <% end %>
+    <%# ==========ここまで編集する========== %>
 
     <%= yield %>
   </body>
