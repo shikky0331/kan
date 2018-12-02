@@ -11,12 +11,14 @@
 
   <body>
     <%# ==========ここから追加する========== %>
-  <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-  <% end %>
-  <% if flash[:alert] %>
-    <p><%= flash[:alert] %></p>
-  <% end %>
+    <% if flash[:notice] %>
+        <!-- ここにclassを追加する -->
+        <div class="alert alert-info"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <!-- ここにclassを追加する -->
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+      <% end %>
   <%# ==========ここまで追加する========== %>
   <% if user_signed_in? %>
     <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
